@@ -43,11 +43,15 @@ npm run dev                  # http://localhost:3000
 
 ## Supabase setup (to go live)
 
-1. Create a project at [supabase.com](https://supabase.com).
-2. In the dashboard: **SQL Editor → New query**, paste the contents of
+The app uses the `camping` schema on the shared **Minwell Apps** Supabase
+project. The table is `camping.reservations` (same columns as before). Env var
+names stay `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_ANON_KEY`.
+
+1. In the Minwell Apps project: **SQL Editor → New query**, paste the contents of
    [`supabase/schema.sql`](supabase/schema.sql), and **Run**. This creates the
-   `reservations` table and permissive RLS policies for the `anon` role (fine
-   for a small, trusted, no-login group).
+   `camping` schema, the `camping.reservations` table, and permissive RLS
+   policies for the `anon` role (fine for a small, trusted, no-login group).
+2. **Project Settings → API → Exposed schemas** — add `camping`.
 3. **Project Settings → API** → copy the **Project URL** and **anon public**
    key into `.env.local`:
 
@@ -69,8 +73,9 @@ npm run dev                  # http://localhost:3000
 
 ## Data model
 
-`reservations`: `id` (uuid pk), `first_name`, `last_name`, `email`, `phone`,
-`camper_length` (numeric), `created_at`, `updated_at`.
+`camping.reservations` on the shared Minwell Apps project: `id` (uuid pk),
+`first_name`, `last_name`, `email`, `phone`, `camper_length` (numeric),
+`created_at`, `updated_at`.
 
 ## Project structure
 
